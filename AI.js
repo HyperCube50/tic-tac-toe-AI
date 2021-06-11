@@ -1,7 +1,7 @@
 class AI {
 	constructor() {
-		this.marker = 'O';
-		this.opponent = 'X';
+		this.marker = 'X';
+		this.opponent = 'O';
 		this.max = Infinity;
 		this.min = -Infinity;
 	}
@@ -10,12 +10,14 @@ class AI {
 		let moves = board.getAvailableMoves();
 
 		//leaf nodes
-		if (board.turnCnt >= 9 || board.winCheck() || moves.length == 0)
+		if (board.turnCnt >= 9 || board.winCheck() || moves.length == 0) {
 			return this.evaluate(board);
+		}
 
 		//max
 		if (player === this.marker) {
 			let value = this.min;
+			
 			for (let i = 0; i < moves.length; i++) {
 				let newBoard = board.clone();
 				newBoard.makeMove(this.marker, moves[i]);
